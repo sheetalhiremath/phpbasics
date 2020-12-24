@@ -1,0 +1,76 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Insert</title>
+</head>
+<body>
+    <label>ID</label>
+    <input type="text" id="id"> 
+    <label>Name</label>
+    <input type="text" id="name">
+    <label>Salary</label>
+    <input type="text" id="salary"> 
+    <label>dept</label>
+    <input type="text" id="dept">
+    <button type="submit" id="button">SAVE</button>    
+    <script>
+        $(document).ready(function(){
+            $("#button").click(function(){
+                var id=$("#id").val();
+                var name=$("#name").val();
+                var salary=$("#salary").val();
+                var dept=$("#dept").val();
+                $.ajax({
+                    url:'ajax_db_insert.php',
+                    method:'POST',
+                    data:{
+                        id:id,
+                        name:name,
+                        salary:salary,
+                        dept:dept
+                    },
+                   success:function(data){
+                       alert(data);
+                   }
+                });
+            });
+
+            $("#button1").click(function(){
+        $.ajax({
+            type: "GET",
+            url: "ajax_db_select.php",
+            //data: "{}",
+            //contentType: "application/json; charset=utf-8",
+            //dataType: "json",
+            success: function (result) {
+                    $("#tbDetails").empty();
+                    $("#tbDetails").append(result);            
+                }
+
+                
+        }); });
+        });
+         $(document).ready(function(){
+            $("#button3").click(function(){
+                $.ajax({
+                    url:'ajax_db_select.php',
+                    method:'GET',
+                    data:{
+                        id:id,
+                        name:name,
+                        salary:salary,
+                        dept:dept
+                    },
+                   success:function(data){
+                       alert(data);
+                   }
+                });
+            });
+        });
+    </script>
+    <button type="button" id="button1">Show</button>
+    <button type="button" id="button3">Delete</button>
+    <button type="button" id="button2" onclick="$('#tbDetails').toggle();">Toggle</button>
+    <div id="tbDetails"></div>
+</body>
+</html>
