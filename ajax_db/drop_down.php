@@ -101,6 +101,10 @@
             }
             return objects;
         }
+
+        function getTestFunctionGit() {
+            alert("test function for git");
+        }
     });
 </script>
 
